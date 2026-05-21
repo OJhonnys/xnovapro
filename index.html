@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xnova Pro — Curating the Sonic Underground</title>
+    
+    <!-- Fontes do Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Link para o arquivo CSS externo -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="nav-logo">XNOVA PRO</a>
+            <div class="nav-links">
+                <a href="#events">Events</a>
+                <a href="#agency">Agency</a>
+                <a href="#stage">Stage Design</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <a href="https://www.vaideingresso.com.br/ce-ta-doido-miami" target="_blank" rel="noopener noreferrer"class="btn-tickets">Buy Tickets</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="hero-section">
+        <video id="hero-video" src="hero-video.mp4" autoplay loop playsinline></video>
+        <div class="hero-overlay"></div>
+        
+        <!-- Botão Mute/Unmute -->
+        <button type="button" id="btn-mute" aria-label="Unmute video" class="btn-mute">
+            <svg id="icon-mute" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"></path><line x1="22" x2="16" y1="9" y2="15"></line><line x1="16" x2="22" y1="9" y2="15"></line></svg>
+        </button>
+        
+        <div class="container hero-container">
+            <div class="hero-content">
+                <p class="hero-subtitle">— Now Booking</p>
+                <h1 class="hero-title">Next Event.</h1>
+                <p class="hero-text">Xnova Pro is a creative agency and promoter specializing in high-fidelity electronic experiences, festival production, and curated club nights across Europe.</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- LETREIRO CORRENDO (MARQUEE) -->
+    <div class="marquee-wrapper border-y">
+        <div class="marquee-track">
+            <div class="marquee-content">
+                <span>★ Next Event: Cê ta doido — Miami, November 7th</span>
+                <span>Xnova Pro — Bringing People Together Through Live Experiences</span>
+                <span>★ Next Event: Cê ta doido — Miami, November 7th</span>
+                <span>Xnova Pro — Bringing People Together Through Live Experiences</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEÇÃO DE EVENTOS -->
+    <section id="events" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">— 2026 Roster</p>
+                <h2 class="section-title">Upcoming & Past productions</h2>
+            </div>
+            
+            <div class="event-grid">
+                <!-- Card Evento 1 -->
+                <div class="event-card">
+                    <div class="card-image-wrapper">
+                        <img src="assets/event-deseo.jpg" alt="Deseo Weekend poster">
+                        <span class="badge">Upcoming</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-header-row">
+                            <h3>Deseo Weekend</h3>
+                            <a href="#" target="_blank" class="btn-external">Visit Site <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg></a>
+                        </div>
+                        <p class="event-details">Paris, FR • July 12—14, 2025</p>
+                        <div class="card-footer-row">
+                            <div class="price-box">
+                                <span class="price-label">From</span>
+                                <span class="price-value">€45</span>
+                            </div>
+                            <button class="btn-buy">Buy tickets</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card Evento 2 -->
+                <div class="event-card">
+                    <div class="card-image-wrapper">
+                        <img src="assets/event-obsidian.jpg" alt="Obsidian Nacht">
+                        <span class="badge">Upcoming</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-header-row">
+                            <h3>Obsidian Nacht</h3>
+                            <a href="#" target="_blank" class="btn-external">Visit Site <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg></a>
+                        </div>
+                        <p class="event-details">Berlin, DE • Aug 02, 2025</p>
+                        <div class="card-footer-row">
+                            <div class="price-box">
+                                <span class="price-label">From</span>
+                                <span class="price-value">€45</span>
+                            </div>
+                            <button class="btn-buy">Buy tickets</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card Evento 3 -->
+                <div class="event-card">
+                    <div class="card-image-wrapper">
+                        <img src="assets/event-echo.jpg" alt="Echo Chamber">
+                        <span class="badge">Upcoming</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-header-row">
+                            <h3>Echo Chamber</h3>
+                            <a href="#" target="_blank" class="btn-external">Visit Site <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg></a>
+                        </div>
+                        <p class="event-details">London, UK • Sept 15, 2025</p>
+                        <div class="card-footer-row">
+                            <div class="price-box">
+                                <span class="price-label">From</span>
+                                <span class="price-value">€45</span>
+                            </div>
+                            <button class="btn-buy">Buy tickets</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BARRA SPOTIFY (CE TA DOIDO) -->
+    <div class="spotify-banner">
+        <div class="marquee-track duration-fast">
+            <div class="marquee-content text-dark">
+                <span>Get ready — listen to the Ce Ta Doido playlist on</span>
+                <span class="spotify-pill">Spotify</span>
+                <span>★</span>
+                <span>Get ready — listen to the Ce Ta Doido playlist on</span>
+                <span class="spotify-pill">Spotify</span>
+                <span>★</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEÇÃO AGÊNCIA (SOBRE) -->
+    <section id="agency" class="section-padding border-t">
+        <div class="container split-grid">
+            <div>
+                <p class="section-subtitle">— The Agency</p>
+                <h2 class="section-title large-title">Booking, production & brand experiences for the underground.</h2>
+            </div>
+            <div class="agency-right">
+                <p class="description-text">From intimate warehouse residencies to multi-day destination festivals, Xnova Pro operates as a curator, producer, and artist partner.</p>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-label">Established</span>
+                        <span class="stat-number">2019</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Productions</span>
+                        <span class="stat-number">80+</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Cities</span>
+                        <span class="stat-number">12</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Roster</span>
+                        <span class="stat-number">140 artists</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO CONSTRUÇÃO DE PALCOS (STAGE DESIGN) -->
+    <section id="stage" class="section-padding bg-surface">
+        <div class="container">
+            <div class="split-grid header-spacing">
+                <div>
+                    <p class="section-subtitle">— Stage Design & Construction</p>
+                    <h2 class="section-title">We design, plan and build every stage.</h2>
+                </div>
+                <p class="description-text text-muted">Xnova Pro's in-house studio takes full ownership of stage architecture — from the first concept sketch and 3D renders, through structural engineering and rigging plans, to the on-site construction crew that physically builds each mainstage. Every event you see on our roster is engineered from the ground up by the same team behind the booking.</p>
+            </div>
+            
+            <div class="stage-gallery">
+                <div class="gallery-item"><img src="assets/stage-1.jpg" alt="Stage structure assembly"></div>
+                <div class="gallery-item"><img src="assets/stage-2.jpg" alt="LED screens being lifted"></div>
+                <div class="gallery-item"><img src="assets/stage-3.jpg" alt="Rigger mounting structure"></div>
+                <div class="gallery-item"><img src="assets/stage-4.jpg" alt="3D design blueprint"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTATO / NEWSLETTER -->
+    <section id="contact" class="section-padding border-t">
+        <div class="container split-grid items-start">
+            <div>
+                <p class="section-subtitle">— Contact</p>
+                <h2 class="section-title">Stay in sync.</h2>
+                <p class="description-text text-muted">Get exclusive access to upcoming festival announcements, secret locations, and limited ticket releases — or reach out to our team for collaborations, production inquiries, and custom event experiences.</p>
+            </div>
+            
+            <form id="contact-form" class="contact-form">
+                <div class="form-row">
+                    <input type="text" required placeholder="First Name">
+                    <input type="text" required placeholder="Last Name">
+                </div>
+                <input type="email" required placeholder="Email Address">
+                <textarea placeholder="Message (Optional)" rows="4"></textarea>
+                <button type="submit" class="btn-submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <span class="footer-logo">XNOVA PRO</span>
+                <p class="footer-meta">Est. 2019 — London / Berlin</p>
+            </div>
+            <div class="footer-links">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Link para o arquivo JavaScript externo -->
+    <script src="script.js"></script>
+</body>
+</html>
