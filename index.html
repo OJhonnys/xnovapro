@@ -3,38 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xnova Pro — Curating the Sonic Underground</title>
+    <title>Xnova Pro</title>
     
-    <!-- Fontes do Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Link para o arquivo CSS externo -->
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-
-    <!-- NAVBAR -->
+<body id="top">
+<!-- NAV BAR -->
     <nav class="navbar">
         <div class="container nav-container">
-            <a href="#" class="nav-logo">XNOVA PRO</a>
+            <a href="#" class="nav-logo"><img src="assets/img/xnova-logo.png" alt="Xnova Pro Logo" class="logo-img"></a>
             <div class="nav-links">
                 <a href="#events">Events</a>
-                <a href="#agency">Agency</a>
+                <a href="#agency">Production Company</a>
                 <a href="#stage">Stage Design</a>
                 <a href="#contact">Contact</a>
             </div>
-            <a href="https://www.vaideingresso.com.br/ce-ta-doido-miami" target="_blank" rel="noopener noreferrer"class="btn-tickets">Buy Tickets</a>
+            <a href="https://usa.vaideingresso.com.br/ce-ta-doido-miami" target="_blank" rel="noopener noreferrer" class="btn-tickets">Buy Tickets</a>
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
+<!-- HERO SECTION -->
     <header class="hero-section">
-        <video id="hero-video" src="hero-video.mp4" autoplay loop playsinline></video>
+        <video id="hero-video" src="hero-video.mp4" autoplay loop playsinline class="absolute inset-0 h-full w-full object-cover"></video>
         <div class="hero-overlay"></div>
         
-        <!-- Botão Mute/Unmute -->
         <button type="button" id="btn-mute" aria-label="Unmute video" class="btn-mute">
             <svg id="icon-mute" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"></path><line x1="22" x2="16" y1="9" y2="15"></line><line x1="16" x2="22" y1="9" y2="15"></line></svg>
         </button>
@@ -42,13 +40,13 @@
         <div class="container hero-container">
             <div class="hero-content">
                 <p class="hero-subtitle">— Now Booking</p>
-                <h1 class="hero-title">Next Event.</h1>
-                <p class="hero-text">Xnova Pro is a creative agency and promoter specializing in high-fidelity electronic experiences, festival production, and curated club nights across Europe.</p>
+                <h1 class="hero-title">One Stage. One Crowd. One Unforgettable Night.</h1>
+                <p class="hero-text">XNOVA brings together music, culture, and world-class production for an experience beyond expectations.</p>
             </div>
         </div>
     </header>
 
-    <!-- LETREIRO CORRENDO (MARQUEE) -->
+<!-- MARQUEE TRACK -->
     <div class="marquee-wrapper border-y">
         <div class="marquee-track">
             <div class="marquee-content">
@@ -60,150 +58,144 @@
         </div>
     </div>
 
-    <!-- SEÇÃO DE EVENTOS -->
+<!-- EVENTS -->    
     <section id="events" class="section-padding">
         <div class="container">
-            <div class="section-header">
-                <p class="section-subtitle">— 2026 Roster</p>
-                <h2 class="section-title">Upcoming & Past productions</h2>
+            
+            <div class="section-header-carousel">
+                <div class="section-header-text">
+                    <p class="section-subtitle">— 2026 Roster</p>
+                    <h2 class="section-title">Upcoming & Past productions</h2>
+                </div>
+                <div class="carousel-controls">
+
+                    
+                    <button type="button" id="prev-btn" class="carousel-arrow" aria-label="Anterior">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                    </button>
+                    <button type="button" id="next-btn" class="carousel-arrow" aria-label="Próximo">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                    </button>
+                </div>
             </div>
             
-            <div class="event-grid">
-                <!-- Card Evento 1 -->
-                <div class="event-card">
-                    <div class="card-image-wrapper">
-                        <img src="assets/event-deseo.jpg" alt="Deseo Weekend poster">
-                        <span class="badge">Upcoming</span>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-header-row">
-                            <h3>Deseo Weekend</h3>
-                            <a href="#" target="_blank" class="btn-external">Visit Site <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg></a>
-                        </div>
-                        <p class="event-details">Paris, FR • July 12—14, 2025</p>
-                        <div class="card-footer-row">
-                            <div class="price-box">
-                                <span class="price-label">From</span>
-                                <span class="price-value">€45</span>
-                            </div>
-                            <button class="btn-buy">Buy tickets</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card Evento 2 -->
-                <div class="event-card">
-                    <div class="card-image-wrapper">
-                        <img src="assets/event-obsidian.jpg" alt="Obsidian Nacht">
-                        <span class="badge">Upcoming</span>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-header-row">
-                            <h3>Obsidian Nacht</h3>
-                            <a href="#" target="_blank" class="btn-external">Visit Site <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg></a>
-                        </div>
-                        <p class="event-details">Berlin, DE • Aug 02, 2025</p>
-                        <div class="card-footer-row">
-                            <div class="price-box">
-                                <span class="price-label">From</span>
-                                <span class="price-value">€45</span>
-                            </div>
-                            <button class="btn-buy">Buy tickets</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card Evento 3 -->
-                <div class="event-card">
-                    <div class="card-image-wrapper">
-                        <img src="assets/event-echo.jpg" alt="Echo Chamber">
-                        <span class="badge">Upcoming</span>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-header-row">
-                            <h3>Echo Chamber</h3>
-                            <a href="#" target="_blank" class="btn-external">Visit Site <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg></a>
-                        </div>
-                        <p class="event-details">London, UK • Sept 15, 2025</p>
-                        <div class="card-footer-row">
-                            <div class="price-box">
-                                <span class="price-label">From</span>
-                                <span class="price-value">€45</span>
-                            </div>
-                            <button class="btn-buy">Buy tickets</button>
-                        </div>
-                    </div>
-                </div>
+            <div class="event-carousel-container">
+                <div class="event-carousel-track" id="carousel-track"></div>
             </div>
+            <section id="events-portfolio-section" class="section-padding" style="display: none; border-top: 1px solid var(--border-color); background-color: #000000;">
+                <div class="container">
+                    <div class="portfolio-header" style="margin-bottom: 40px; text-align: center;">
+                        <h2 id="portfolio-section-title" style="font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); color: #ffffff; margin-bottom: 8px;">Event Portfolio</h2>
+                        <p style="color: var(--text-muted); font-size: 1.1rem;">Scroll down to explore the experience.</p>
+                    </div>
+                    
+                    <div class="portfolio-inline-grid" id="portfolio-inline-grid"></div>
+                </div>
+            </section>    
+
         </div>
     </section>
 
-    <!-- BARRA SPOTIFY (CE TA DOIDO) -->
-    <div class="spotify-banner">
-        <div class="marquee-track duration-fast">
-            <div class="marquee-content text-dark">
-                <span>Get ready — listen to the Ce Ta Doido playlist on</span>
-                <span class="spotify-pill">Spotify</span>
-                <span>★</span>
-                <span>Get ready — listen to the Ce Ta Doido playlist on</span>
-                <span class="spotify-pill">Spotify</span>
-                <span>★</span>
+<!-- SPOTIFY MARQUEE TRACK -->    
+    <a href="https://open.spotify.com/playlist/6jf0uArAIlkf2G2H6Vuo35" target="_blank" rel="noopener noreferrer" class="spotify-link-wrapper">
+        <div class="spotify-banner">
+            <div class="marquee-track duration-fast">
+                <div class="marquee-content text-dark">
+                    <span>Get ready — listen to the Ce Ta Doido playlist on</span>
+                    <span class="spotify-pill">Spotify</span>
+                    <span>★</span>
+                    <span>Get ready — listen to the Ce Ta Doido playlist on</span>
+                    <span class="spotify-pill">Spotify</span>
+                    <span>★</span>
+                </div>
             </div>
         </div>
-    </div>
+    </a>
 
-    <!-- SEÇÃO AGÊNCIA (SOBRE) -->
+<!-- PRODUCTION COMPANY -->
     <section id="agency" class="section-padding border-t">
-        <div class="container split-grid">
-            <div>
-                <p class="section-subtitle">— The Agency</p>
-                <h2 class="section-title large-title">Booking, production & brand experiences for the underground.</h2>
-            </div>
-            <div class="agency-right">
-                <p class="description-text">From intimate warehouse residencies to multi-day destination festivals, Xnova Pro operates as a curator, producer, and artist partner.</p>
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <span class="stat-label">Established</span>
-                        <span class="stat-number">2019</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-label">Productions</span>
-                        <span class="stat-number">80+</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-label">Cities</span>
-                        <span class="stat-number">12</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-label">Roster</span>
-                        <span class="stat-number">140 artists</span>
-                    </div>
+        <div class="container about-split-grid">
+            
+            <div class="about-left-col">
+                <p class="section-subtitle">— Production Company</p>
+                <h2 class="section-title large-title-about">About Xnova Productions</h2>
+                
+                <div class="about-image-wrapper">
+                    <img src="assets/img/xnova-crew.png" alt="Xnova Productions crowd experience" class="about-img">
+                    <div class="about-image-overlay"></div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SEÇÃO CONSTRUÇÃO DE PALCOS (STAGE DESIGN) -->
-    <section id="stage" class="section-padding bg-surface">
-        <div class="container">
-            <div class="split-grid header-spacing">
-                <div>
-                    <p class="section-subtitle">— Stage Design & Construction</p>
-                    <h2 class="section-title">We design, plan and build every stage.</h2>
-                </div>
-                <p class="description-text text-muted">Xnova Pro's in-house studio takes full ownership of stage architecture — from the first concept sketch and 3D renders, through structural engineering and rigging plans, to the on-site construction crew that physically builds each mainstage. Every event you see on our roster is engineered from the ground up by the same team behind the booking.</p>
             </div>
             
-            <div class="stage-gallery">
-                <div class="gallery-item"><img src="assets/stage-1.jpg" alt="Stage structure assembly"></div>
-                <div class="gallery-item"><img src="assets/stage-2.jpg" alt="LED screens being lifted"></div>
-                <div class="gallery-item"><img src="assets/stage-3.jpg" alt="Rigger mounting structure"></div>
-                <div class="gallery-item"><img src="assets/stage-4.jpg" alt="3D design blueprint"></div>
+            <div class="about-right-col">
+                <div class="about-story-text">
+                    <p><strong>Xnova Productions Corp</strong> is a premier, family-owned entertainment company based in Miami. Founded with a deep-rooted passion for creating unforgettable live experiences, the company brings years of dedication, structural engineering, and nightlife expertise to large-scale events.</p>
+                    
+                    <p>While the Xnova brand itself is a fresh force, our core team holds a formidable background in the industry. We are the architects behind some of Miami's most iconic gatherings, including three consecutive editions of <strong>Deseo Weekend</strong> (2022, 2023, and 2024), the high-energy <strong>Dream Summer Festival</strong>, the sensational <strong>Numanice Miami</strong>, and most recently, the monumental <strong>Super Nova New Year’s Eve 2026</strong>.</p>
+                    
+                    <p>Our mission goes beyond the party — we project you into a new dimension. Through innovative production, immersive atmospheres, and world-class artist curated lineups, Xnova is more than a production company; it is a gateway to experiences that connect, move, and inspire.</p>
+                    
+                    <p class="galaxy-welcome">Welcome to the future of events. Welcome to the Xnova galaxy.</p>
+                </div>
+                
+                <div class="about-stats-grid">
+                    <div class="about-stat-item">
+                        <span class="about-stat-number">5+ Years</span>
+                        <span class="about-stat-label">Experience</span>
+                    </div>
+                    <div class="about-stat-item">
+                        <span class="about-stat-number">20k+</span>
+                        <span class="about-stat-label">Attendees</span>
+                    </div>
+                    <div class="about-stat-item">
+                        <span class="about-stat-number">Miami</span>
+                        <span class="about-stat-label">Base</span>
+                    </div>
+                    <div class="about-stat-item">
+                        <span class="about-stat-number">Iconic</span>
+                        <span class="about-stat-label">Productions</span>
+                    </div>
+                </div>
             </div>
+
         </div>
     </section>
 
-    <!-- CONTATO / NEWSLETTER -->
+<!-- STAGE -->    
+<section id="stage" class="section-padding bg-surface">
+        <div class="container">
+            
+            <div class="stage-header-block">
+                <p class="section-subtitle">— Stage Design & Construction</p>
+                <h2 class="section-title large-title-stage">We design, plan and build every stage.</h2>
+                <p class="stage-description-text">At Xnova Pro, we bring ideas to life through immersive stage design, custom fabrication, and full-scale scenic production. From concept to final build, our team creates unique environments for concerts, festivals, corporate events, and live experiences. We specialize in 3D stage design, transforming creative visions into detailed visual concepts that combine innovation, functionality, and impact. Our production and construction team then turns those concepts into reality with high-quality scenic fabrication, custom structures, branded installations, and one-of-a-kind stage elements. Whether it’s a large-scale festival stage, immersive event setup, or custom scenic piece, Xnova Pro delivers creative solutions designed to elevate every experience.</p>
+            </div>
+
+            <div class="stage-carousel-container" style="position: relative;">
+                
+                <div class="stage-carousel-controls">
+                    <button type="button" class="stage-ctrl-arrow left" id="stage-prev-btn" aria-label="Previous stages">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    </button>
+                    <button type="button" class="stage-ctrl-arrow right" id="stage-next-btn" aria-label="Next stages">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
+                </div>
+
+                <div class="stage-carousel-track" id="stage-carousel-track">
+                    <div class="gallery-item"><img src="assets/stage-1.jpg" alt="Stage structure assembly"></div>
+                    <div class="gallery-item"><img src="assets/stage-2.jpg" alt="LED screens being lifted"></div>
+                    <div class="gallery-item"><img src="assets/stage-3.jpg" alt="Rigger mounting structure"></div>
+                    <div class="gallery-item"><img src="assets/stage-4.jpg" alt="3D design blueprint"></div>
+                    <div class="gallery-item"><img src="assets/stage-5.jpg" alt="Mainstage lighting test"></div>
+                    <div class="gallery-item"><img src="assets/stage-6.jpg" alt="Front of house mixing station"></div>
+                    <div class="gallery-item"><img src="assets/stage-7.jpg" alt="Laser show rehearsal"></div>
+                    <div class="gallery-item"><img src="assets/stage-8.jpg" alt="Crowd perspective layout"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+<!-- CONTACT -->    
     <section id="contact" class="section-padding border-t">
         <div class="container split-grid items-start">
             <div>
@@ -211,35 +203,62 @@
                 <h2 class="section-title">Stay in sync.</h2>
                 <p class="description-text text-muted">Get exclusive access to upcoming festival announcements, secret locations, and limited ticket releases — or reach out to our team for collaborations, production inquiries, and custom event experiences.</p>
             </div>
-            
-            <form id="contact-form" class="contact-form">
+
+            <!-- FORM -->
+            <form id="contact-form" class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                
+                <input type="hidden" name="access_key" value="dc430440-b689-436b-8570-bff20294a94f">
+                
+                <input type="hidden" name="subject" value="New Contact from Xnova Pro Website">
+                
+                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
                 <div class="form-row">
-                    <input type="text" required placeholder="First Name">
-                    <input type="text" required placeholder="Last Name">
+                    <input type="text" name="first_name" required placeholder="First Name">
+                    <input type="text" name="last_name" required placeholder="Last Name">
                 </div>
-                <input type="email" required placeholder="Email Address">
-                <textarea placeholder="Message (Optional)" rows="4"></textarea>
-                <button type="submit" class="btn-submit">Send Message</button>
+                <input type="email" name="email" required placeholder="Email Address">
+                <textarea name="message" placeholder="Message" rows="4"></textarea>
+                
+                <button type="submit" class="btn-submit" id="submit-btn">Send Message</button>
             </form>
         </div>
     </section>
 
-    <!-- FOOTER -->
+<!-- FOOTER -->    
     <footer class="main-footer">
-        <div class="container footer-container">
-            <div class="footer-brand">
-                <span class="footer-logo">XNOVA PRO</span>
-                <p class="footer-meta">Est. 2019 — London / Berlin</p>
+        <div class="container footer-grid">
+            
+            <!-- SOCIAL MEDIA -->  
+            <div class="footer-socials">
+                <a href="https://www.instagram.com/xnovamiami/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                </a>
+                <a href="https://facebook.com/xnovaproductions" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                </a>
             </div>
-            <div class="footer-links">
-                <a href="#">Privacy</a>
-                <a href="#">Terms</a>
-                <a href="#contact">Contact</a>
+
+            <!-- BRAND -->  
+            <div class="footer-brand-col">
+                <a href="#" class="nav-logo"><img src="assets/img/logo.png" alt="Xnova Productions Logo" class="footer-logo-img"></a>
+            
+                <p class="footer-location">EST. 2019 — MIAMI - FL - UNITED STATES</p>
             </div>
+
+            <!-- LEGAL LINKS -->  
+            <div class="footer-legal-links">
+                <a href="privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy (FIPA)</a>
+                <a href="terms.html" target="_blank" rel="noopener noreferrer">Terms of Service</a>
+            </div>
+            
         </div>
     </footer>
+    <div class="container footer-bottom">
+        <p class="copyright-text">&copy; 2026 Xnova Productions Corp. All rights reserved.</p>
+        <p class="developer-credit">Developed by <a href="#" target="_blank">Jhonny Da Silva</a></p>
+    </div>
 
-    <!-- Link para o arquivo JavaScript externo -->
     <script src="script.js"></script>
 </body>
 </html>

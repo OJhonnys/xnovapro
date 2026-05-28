@@ -69,6 +69,10 @@ body {
     }
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 /* NAVBAR */
 .navbar {
     position: fixed;
@@ -90,13 +94,10 @@ body {
     justify-content: space-between;
 }
 
-.nav-logo {
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 1.25rem;
-    letter-spacing: -0.05em;
-    color: var(--text-main);
-    text-decoration: none;
+.logo-img {
+    height: 48px;       /* Controla a altura da logo no topo */
+    width: auto;        /* Mantém a proporção correta da imagem */
+    display: block;
 }
 
 .nav-links {
@@ -215,7 +216,7 @@ body {
 
 .hero-title {
     font-family: var(--font-display);
-    font-size: clamp(3rem, 6vw, 5rem);
+    font-size: clamp(2.4rem, 4.8vw, 4rem);
     font-weight: 600;
     line-height: 1;
     letter-spacing: -0.05em;
@@ -303,19 +304,83 @@ body {
     margin-bottom: 48px;
 }
 
-/* EVENT CARDS GRID */
-.event-grid {
-    display: grid;
-    gap: 32px;
-    grid-template-columns: 1fr;
+/* CARROSSEL DE EVENTOS REVISADO (CORREÇÃO DE TAMANHO GIGANTE) */
+.section-header-carousel {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 48px;
+    width: 100%;
+}
+
+.carousel-controls {
+    display: flex;
+    gap: 12px;
+}
+
+.carousel-arrow {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    background-color: #18181b;
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.carousel-arrow:hover {
+    background-color: #27272a;
+    border-color: #71717a;
+}
+
+/* CONTAINER QUE ESCONDE O SCROLL ORIGINAL */
+.event-carousel-container {
+    width: 100%;
+    overflow: hidden;
+}
+
+/* A FAIXA ONDE OS CARDS FICAM ALINHADOS LADO A LADO */
+.event-carousel-track {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding-bottom: 16px;
+    width: 100%;
+    
+    /* Esconde a barra de rolagem no Chrome, Safari e Opera */
+    scrollbar-width: none; /* Firefox */
+}
+
+.event-carousel-track::-webkit-scrollbar {
+    display: none; /* Chrome e Safari */
+}
+
+/* LARGURA CONTROLADA DOS CARDS NO CARROSSEL (TRAVA CONTRA TAMANHO GIGANTE) */
+.event-carousel-track .event-card {
+    flex: 0 0 100%; /* Celular: 1 card por linha ocupando 100% */
+    width: 100%;
+    max-width: 100%;
 }
 
 @media (min-width: 640px) {
-    .event-grid { grid-template-columns: repeat(2, 1fr); }
+    .event-carousel-track .event-card {
+        flex: 0 0 calc(50% - 12px); /* Tablet: 2 Cards por tela */
+        width: calc(50% - 12px);
+        max-width: calc(50% - 12px);
+    }
 }
 
 @media (min-width: 1024px) {
-    .event-grid { grid-template-columns: repeat(3, 1fr); }
+    .event-carousel-track .event-card {
+        flex: 0 0 calc(33.333% - 16px); /* Desktop: 3 Cards perfeitos alinhados */
+        width: calc(33.333% - 16px);
+        max-width: calc(33.333% - 16px);
+    }
 }
 
 .event-card {
@@ -334,7 +399,7 @@ body {
 .card-image-wrapper {
     position: relative;
     width: 100%;
-    aspect-ratio: 5 / 7;
+    aspect-ratio: 4 / 5; /* Proporção de poster vertical elegante */
     overflow: hidden;
     border-radius: 12px;
     background-color: #18181b;
@@ -344,7 +409,7 @@ body {
 .card-image-wrapper img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; /* Faz a imagem preencher o contêiner perfeitamente sem esticar */
     transition: transform 0.7s;
 }
 
@@ -435,20 +500,31 @@ body {
 .btn-buy {
     height: 36px;
     padding: 0 16px;
-    background-color: var(--accent-color);
+    
+    /* Mesmo gradiente no fundo */
+    background: linear-gradient(90deg, #f3d449 0%, #f1833b 50%, #d44c8b 100%);
+    color: #ffffff !important; /* Força o texto a ficar branco, ignorando a cor padrão de links */
+    
     border: none;
-    color: #ffffff;
     font-size: 12px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     border-radius: 4px;
     cursor: pointer;
-    transition: opacity 0.2s;
+    
+    /* AJUSTES CRUTIAIS PARA A TAG <a> REPRODUZIR O COMPORTAMENTO DE BOTÃO: */
+    display: inline-flex;       /* Permite alinhar o texto perfeitamente */
+    align-items: center;        /* Alinha o texto no centro verticalmente */
+    justify-content: center;    /* Alinha o texto no centro horizontalmente */
+    text-decoration: none;      /* Remove aquele sublinhado padrão de links */
+    
+    transition: transform 0.2s, opacity 0.2s;
 }
 
 .btn-buy:hover {
-    opacity: 0.9;
+    transform: scale(1.03);
+    opacity: 0.95;
 }
 
 /* BANNER SPOTIFY */
@@ -472,67 +548,329 @@ body {
     font-size: 1rem !important;
 }
 
-/* AGENCY DETALHES */
-.agency-right {
+/* AJUSTE PARA O LINK DO SPOTIFY OCUPAR A FAIXA TODA */
+.spotify-link-wrapper {
+    text-decoration: none; /* Remove qualquer sublinhado indesejado */
+    display: block;        /* Força o link a pegar toda a largura e altura da faixa */
+    cursor: pointer;       /* Faz o ponteiro do mouse virar a "mãozinha" de clique */
+}
+
+/* Efeito opcional: deixa a faixa levemente mais brilhante ao passar o mouse */
+.spotify-link-wrapper:hover .spotify-banner {
+    filter: brightness(1.5);
+    transition: filter 0.2s ease;
+}
+
+/* DESIGN DA NOVA SEÇÃO ABOUT */
+.about-split-grid {
+    display: grid;
+    gap: 48px;
+    grid-template-columns: 1fr; /* 1 coluna no celular */
+}
+
+@media (min-width: 992px) {
+    .about-split-grid {
+        grid-template-columns: 1fr 1.2fr; /* Duas colunas equilibradas no PC */
+        gap: 64px;
+    }
+}
+
+/* Título Customizado */
+.large-title-about {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    line-height: 1.1;
+    margin-bottom: 24px;
+}
+
+/* CAIXA DA FOTO DESTACADA */
+.about-image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10; /* Formato wide cinematográfico */
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    margin-top: 16px;
+}
+
+.about-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Efeito de sombra escura na foto para combinar com a identidade do site */
+.about-image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0) 0%, transparent 100%);
+    pointer-events: none;
+}
+
+/* FORMATAÇÃO DOS PARÁGRAFOS DA HISTÓRIA */
+.about-story-text {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 20px;
 }
 
-.description-text {
-    font-size: 1.125rem;
+.about-story-text p {
+    font-size: 1.05rem;
     line-height: 1.6;
-}
-
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-    border-top: 1px solid var(--border-color);
-    padding-top: 32px;
-}
-
-.stat-label {
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
     color: var(--text-muted);
 }
 
-.stat-number {
-    display: block;
+.about-story-text p strong {
+    color: var(--text-main);
+}
+
+/* Frase de efeito final com a cor fúcsia da marca */
+.galaxy-welcome {
     font-family: var(--font-display);
-    font-size: 1.5rem;
+    color: var(--accent-color) !important;
+    font-weight: 600;
+    font-size: 1.15rem !important;
+    letter-spacing: -0.02em;
     margin-top: 8px;
 }
 
-/* STAGE ARCHITECTURE GALLERY */
-.stage-gallery {
+/* NOVA GRID DE NÚMEROS ABAIXO DO TEXTO */
+/* CONTAINER DAS ESTATÍSTICAS (OCUPA 100% DA LARGURA DA COLUNA) */
+/* DESIGN DA SEÇÃO ABOUT */
+.about-split-grid {
     display: grid;
-    gap: 16px;
-    grid-template-columns: repeat(2, 1fr);
+    gap: 48px;
+    grid-template-columns: 1fr;
+    align-items: start; /* Garante que as duas colunas comecem alinhadas pelo topo */
 }
 
-@media (min-width: 768px) {
-    .stage-gallery { grid-template-columns: repeat(4, 1fr); }
+@media (min-width: 992px) {
+    .about-split-grid {
+        grid-template-columns: 1fr 1.2fr; /* Lado esquerdo (foto) e Lado direito (texto) */
+        gap: 64px;
+    }
 }
 
-.gallery-item {
+/* CONTAINER DAS ESTATÍSTICAS (AGORA RESTRITO À COLUNA DA DIREITA) */
+/* DESIGN DA SEÇÃO ABOUT */
+.about-split-grid {
+    display: grid;
+    gap: 48px;
+    grid-template-columns: 1fr;
+    align-items: start; /* Garante que as duas colunas comecem alinhadas pelo topo */
+}
+
+@media (min-width: 992px) {
+    .about-split-grid {
+        grid-template-columns: 1fr 1.2fr; /* Lado esquerdo (foto) e Lado direito (texto) */
+        gap: 64px;
+    }
+}
+
+/* CONTAINER DAS ESTATÍSTICAS (AGORA RESTRITO À COLUNA DA DIREITA) */
+/* CONTAINER DAS ESTATÍSTICAS (DIVIDIDO EM 4 COLUNAS PERFEITAS) */
+.about-stats-grid {
+    width: 100%;
+    
+    /* Mudamos para Grid para ter controle total do espaço */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Divide a linha em 4 colunas idênticas (25% cada) */
+    gap: 16px; /* Espaço fixo e seguro entre as colunas */
+    
+    border-top: 1px solid var(--border-color);
+    padding-top: 32px;
+    margin-top: 40px;
+}
+
+/* CADA ITEM DA STAT */
+.about-stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: left; /* Alinha o texto na esquerda de cada uma das 4 colunas */
+}
+
+/* O NÚMERO principal */
+.about-stat-number {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 2.2vw, 2rem); /* Tamanho ajustado para caber na coluna de 25% */
+    font-weight: 700;
+    color: var(--text-main);
+    line-height: 1.1; /* Dá um leve respiro caso quebre em duas linhas */
+    letter-spacing: -0.03em;
+}
+
+/* A LEGENDA do número */
+.about-stat-label {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+}
+
+/* AJUSTE RESPONSIVO PARA CELULARES */
+@media (max-width: 640px) {
+    .about-stats-grid {
+        grid-template-columns: repeat(2, 1fr); /* No celular vira 2 colunas e 2 linhas */
+        gap: 24px 16px;
+    }
+}
+
+/* BLOCO DE TEXTO DO STAGE DESIGN */
+.stage-header-block {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;          
+    max-width: 900px;   
+    margin-bottom: 48px; 
+}
+
+.large-title-stage {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.2;
+    margin-bottom: 8px;
+}
+
+.stage-description-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+}
+
+/* ALINHAMENTO DOS BOTÕES DO STAGE */
+.stage-carousel-controls-wrapper {
+    display: flex;
+    justify-content: flex-end; 
+    margin-bottom: 24px;
+    width: 100%;
+}
+
+/* CAIXA QUE LIMITA E CORTA O QUE PASSA DA TELA */
+.stage-carousel-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+/* A FAIXA HORIZONTAL DAS FOTOS (FORÇANDO O FLEX) */
+.stage-carousel-track {
+    display: flex !important; /* Força a ficar na horizontal */
+    flex-direction: row !important;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding-bottom: 20px;
+    width: 100%;
+    scrollbar-width: none; /* Oculta no Firefox */
+}
+
+.stage-carousel-track::-webkit-scrollbar {
+    display: none; /* Oculta no Chrome/Safari */
+}
+
+/* TRAVA DE TAMANHO PARA AS FOTOS NÃO FICAREM GIGANTES */
+.stage-carousel-track .gallery-item {
+    flex: 0 0 85% !important; /* Impede o item de esticar ou encolher */
+    width: 85%;
+    max-width: 85%;
     aspect-ratio: 4 / 5;
     overflow: hidden;
     border-radius: 12px;
     background-color: #18181b;
 }
 
-.gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+/* Tablets (2 fotos por tela) */
+@media (min-width: 640px) {
+    .stage-carousel-track .gallery-item {
+        flex: 0 0 calc(50% - 10px) !important;
+        width: calc(50% - 10px);
+        max-width: calc(50% - 10px);
+    }
+}
+
+/* STAGE Computadores (3 fotos perfeitas por tela, o resto corre pra direita) */
+@media (min-width: 1024px) {
+    .stage-carousel-track .gallery-item {
+        flex: 0 0 calc(33.333% - 13.3px) !important;
+        width: calc(33.333% - 13.3px);
+        max-width: calc(33.333% - 13.3px);
+    }
+}
+
+/* GARANTE QUE A IMAGEM PREENCHA O QUADRANTE SEM VAZAR */
+.stage-carousel-track .gallery-item img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block;
     transition: transform 0.7s;
 }
 
-.gallery-item img:hover {
+.stage-carousel-track .gallery-item img:hover {
     transform: scale(1.05);
+}
+
+/* ========================================================
+   CONTROLES DE SETAS DO CARROSSEL DE STAGE DESIGN
+   ======================================================== */
+.stage-carousel-container {
+    position: relative;
+    width: 100%;
+}
+
+/* Base do botão redondo flutuante */
+.stage-ctrl-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(11, 11, 12, 0.7); /* Mesma cor do fundo do rights */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 100;
+    opacity: 0; /* Começa oculto e elegante */
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    backdrop-filter: blur(4px);
+}
+
+/* Faz as setas surgirem suavemente ao passar o mouse sobre o container da galeria */
+.stage-carousel-container:hover .stage-ctrl-arrow {
+    opacity: 1;
+}
+
+/* Posicionamento nas extremidades */
+.stage-ctrl-arrow.left {
+    left: 8px;
+}
+
+.stage-ctrl-arrow.right {
+    right: 8px;
+}
+
+/* Efeito Hover Individual */
+.stage-ctrl-arrow:hover {
+    background: #000000;
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-50%) scale(1.08);
+}
+
+/* Ajuste responsivo para telas menores (celular não tem hover, então deixa visível e menor) */
+@media (max-width: 768px) {
+    .stage-ctrl-arrow {
+        opacity: 1;
+        width: 40px;
+        height: 40px;
+    }
+    .stage-ctrl-arrow.left { left: 8px; }
+    .stage-ctrl-arrow.right { right: 8px; }
 }
 
 /* CONTATO FORMULÁRIO */
@@ -570,75 +908,223 @@ body {
 
 .btn-submit {
     height: 48px;
-    background-color: #ffffff;
-    color: #000000;
+    /* Correção: Mudado background-color para background para aceitar o linear-gradient */
+    background: linear-gradient(90deg, #f3d449 0%, #f1833b 50%, #d44c8b 100%);
+    color: #ffffff; /* Texto branco para dar contraste premium com o gradiente */
     border: none;
     border-radius: 4px;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 0.875rem;
     cursor: pointer;
-    transition: background-color 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: transform 0.2s, opacity 0.2s, background 0.3s;
 }
 
 .btn-submit:hover {
-    background-color: #e4e4e7;
+    transform: scale(1.01);
+    opacity: 0.95;
 }
 
 /* FOOTER */
+/* ========================================================
+   ESTILIZAÇÃO DO FOOTER PREMIUM (XNOVA CORP)
+   ======================================================== */
 .main-footer {
+    background-color: #000000;
     border-top: 1px solid var(--border-color);
-    padding: 48px 0;
+    border-bottom: 1px solid var(--border-color);
+    padding: 64px 0 32px 0;
+    width: 100%;
 }
 
-.footer-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+/* Grid principal de 3 colunas */
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 32px;
+    align-items: center;
+    padding-bottom: 40px;
 }
 
 @media (min-width: 768px) {
-    .footer-container {
-        flex-direction: row;
+    .footer-grid {
+        grid-template-columns: 1fr 1fr 1fr; /* Marca na esq, links centro, redes na dir */
     }
 }
 
-.footer-brand {
-    text-align: center;
+/* Coluna 2: Logo */
+.footer-logo-img {
+    height: 60px; /* Aumentado consideravelmente o tamanho da logo */
+    width: auto;
+    display: block;
+    object-fit: contain;/* Centraliza a imagem horizontalmente */
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 8px; /* Espaço entre a logo e o texto abaixo */
+}
+
+/* Garante a centralização de todo o bloco da marca e textos */
+.footer-brand-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Alinha tudo ao centro */
+    text-align: center; /* Centraliza o texto dentro dos parágrafos */
+}
+
+/* Mantém o texto de localização com o estilo fosco */
+.footer-location {
+font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin: 0;              /* Remove margens padrões que possam empurrar o texto */
+    text-align: center;     /* Reforço direto no elemento */
+}
+
+/* Coluna 3: Links de Termos e Privacidade */
+.footer-legal-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 @media (min-width: 768px) {
-    .footer-brand { text-align: left; }
+    .footer-legal-links {
+        justify-self: center; /* Centraliza no PC */
+        align-items: center;
+    }
 }
 
-.footer-logo {
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 1.125rem;
-    letter-spacing: -0.05em;
-}
-
-.footer-meta {
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
+.footer-legal-links a {
     color: var(--text-muted);
-    margin-top: 4px;
-}
-
-.footer-links {
-    display: flex;
-    gap: 32px;
-}
-
-.footer-links a {
-    font-size: 0.875rem;
-    color: var(--text-muted);
+    font-size: 13px;
     text-decoration: none;
-    transition: color 0.2s;
+    transition: color 0.3s ease;
 }
 
-.footer-links a:hover {
+.footer-legal-links a:hover {
     color: var(--text-main);
+}
+
+/* Coluna 1: Redes Sociais */
+.footer-socials {
+    display: flex;
+    gap: 16px;
+}
+
+@media (min-width: 768px) {
+    .footer-socials {
+        justify-self: start; /* Gruda na direita no PC */
+    }
+}
+
+.social-link {
+    color: var(--text-muted);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+/* Sub-Rodapé: Copyright e Créditos */
+/* SUB-RODAPÉ: CRIA A LINHA E SEPARA O COPYRIGHT */
+.container-footer-bottom {
+    max-width: 1200px;
+    padding: 12px;
+}
+
+.footer-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 12px;
+}
+
+@media (min-width: 768px) {
+    .footer-bottom {
+        flex-direction: row;
+        justify-content: space-between; /* Texto na esquerda, Desenvolvedor na direita */
+        align-items: center;
+    }
+}
+
+.copyright-text, 
+.developer-credit {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.developer-credit a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.developer-credit a:hover {
+    color: var(--accent-color);
+}
+
+/* ========================================================
+   GRID DE FOTOS DO PORTFÓLIO INLINE (PÁGINA INTEGRADA)
+   ======================================================== */
+.portfolio-inline-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); /* Celular: 1 coluna */
+    gap: 20px;
+    width: 100%;
+}
+
+/* Tablets (2 colunas) */
+@media (min-width: 600px) {
+    .portfolio-inline-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Computadores (3 colunas estáveis e limpas) */
+@media (min-width: 900px) {
+    .portfolio-inline-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Telas grandes / Monitores (4 colunas para valorizar o mosaico) */
+@media (min-width: 1200px) {
+    .portfolio-inline-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Estilo das molduras das imagens */
+.portfolio-grid-item {
+    aspect-ratio: 4 / 5; /* Formato vertical elegante */
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #0b0b0c;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Imagens preenchendo a caixa com efeito sutil ao passar o mouse */
+.portfolio-grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.portfolio-grid-item img:hover {
+    transform: scale(1.04);
 }

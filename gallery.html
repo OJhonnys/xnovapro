@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xnova Productions — Gallery</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        body { background-color: #000000; color: #ffffff; font-family: 'Inter', sans-serif; min-height: 100vh; }
+        .gallery-container { max-width: 1400px; margin: 60px auto; padding: 0 24px; }
+        .btn-back { display: inline-flex; align-items: center; gap: 8px; color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 500; margin-bottom: 40px; transition: color 0.3s; }
+        .btn-back:hover { color: var(--text-main); }
+        .gallery-title-wrapper { text-align: center; margin-bottom: 50px; }
+        .gallery-logo-img { height: 60px; width: auto; object-fit: contain; margin-bottom: 16px; }
+        .gallery-page-title { font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; font-weight: 700; color: #ffffff; margin: 0; }
+        
+        /* Grid de Fotos */
+        .gallery-grid-display { display: grid; grid-template-columns: repeat(1, 1fr); gap: 24px; width: 100%; }
+        @media (min-width: 550px) { .gallery-grid-display { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 900px) { .gallery-grid-display { grid-template-columns: repeat(3, 1fr); } }
+        @media (min-width: 1200px) { .gallery-grid-display { grid-template-columns: repeat(4, 1fr); } }
+        
+        .gallery-photo-card { aspect-ratio: 4 / 5; border-radius: 12px; overflow: hidden; background-color: #0b0b0c; border: 1px solid rgba(255, 255, 255, 0.03); cursor: pointer; }
+        .gallery-photo-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .gallery-photo-card img:hover { transform: scale(1.04); }
+
+        /* ========================================================
+           LIGHTBOX COM SELETOR DE NAVEGAÇÃO LATERAL (ARROWS)
+           ======================================================== */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(10px);
+            z-index: 3000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.is-active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .lightbox-img {
+            max-width: 85%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            transform: scale(0.95);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            user-select: none;
+        }
+
+        .lightbox.is-active .lightbox-img {
+            transform: scale(1);
+        }
+
+        /* Botões Globais de Controle */
+        .lightbox-btn {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s, color 0.3s;
+            z-index: 3100;
+        }
+
+        .lightbox-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            transform: scale(1.05);
+        }
+
+        .lightbox-close { top: 24px; right: 24px; }
+        .lightbox-arrow-left { left: 32px; }
+        .lightbox-arrow-right { right: 32px; }
+
+        /* Esconde as setas em telas muito pequenas para não cobrir a imagem */
+        @media (max-width: 600px) {
+            .lightbox-arrow-left { left: 12px; width: 44px; height: 44px; }
+            .lightbox-arrow-right { right: 12px; width: 44px; height: 44px; }
+        }
+
+        body.lightbox-open {
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+
+    <main class="gallery-container">
+        <a href="index.html" class="btn-back">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Back to Experience
+        </a>
+
+        <div class="gallery-title-wrapper">
+            <img src="assets/img/logo.png" alt="Xnova Logo" class="gallery-logo-img">
+            <h1 id="gallery-title" class="gallery-page-title">Event Experience</h1>
+        </div>
+
+        <div class="gallery-grid-display" id="live-gallery-grid"></div>
+    </main>
+
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-wrapper">
+            <button type="button" class="lightbox-btn lightbox-close" id="lightbox-close" aria-label="Close image">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+
+            <button type="button" class="lightbox-btn lightbox-arrow-left" id="lightbox-prev" aria-label="Previous image">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            </button>
+
+            <img src="" alt="Expanded View" class="lightbox-img" id="lightbox-img">
+
+            <button type="button" class="lightbox-btn lightbox-arrow-right" id="lightbox-next" aria-label="Next image">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const eventName = urlParams.get('event') || 'Event Portfolio';
+            const folderName = urlParams.get('folder');
+
+            document.getElementById("gallery-title").innerText = eventName;
+
+            const gridContainer = document.getElementById("live-gallery-grid");
+            const totalPhotos = 35; // Definição estável do teto de fotos
+            let currentPhotoIndex = 1; // Controla qual foto está aberta (de 1 a 35)
+
+            // 1. GERA AS FOTOS DENTRO DO GRID COM ATRIBUTO INDEX MAPPED
+            if (gridContainer && folderName) {
+                gridContainer.innerHTML = Array.from({ length: totalPhotos }, (_, i) => `
+                    <div class="gallery-photo-card" data-index="${i + 1}">
+                        <img src="assets/events/${folderName}/pic-${i + 1}.jpg" alt="${eventName} Photo ${i + 1}" loading="lazy">
+                    </div>
+                `).join('');
+            } else {
+                gridContainer.innerHTML = `<p style="color: var(--text-muted); text-align: center; grid-column: 1/-1;">No photos found.</p>`;
+            }
+
+            const lightbox = document.getElementById("lightbox");
+            const lightboxImg = document.getElementById("lightbox-img");
+            const lightboxClose = document.getElementById("lightbox-close");
+            const btnPrev = document.getElementById("lightbox-prev");
+            const btnNext = document.getElementById("lightbox-next");
+
+            // 2. FUNÇÃO QUE FAZ A TROCA DE IMAGEM COM BASE NO INDEX CORRENTE
+            function updateLightboxImage() {
+                if (folderName) {
+                    lightboxImg.src = `assets/events/${folderName}/pic-${currentPhotoIndex}.jpg`;
+                }
+            }
+
+            // 3. EVENTOS DE NAVEGAÇÃO (AVANÇAR E VOLTAR)
+            function nextImage() {
+                if (currentPhotoIndex < totalPhotos) {
+                    currentPhotoIndex++;
+                } else {
+                    currentPhotoIndex = 1; // Volta para a primeira foto se chegar na última
+                }
+                updateLightboxImage();
+            }
+
+            function prevImage() {
+                if (currentPhotoIndex > 1) {
+                    currentPhotoIndex--;
+                } else {
+                    currentPhotoIndex = totalPhotos; // Vai para a última se voltar a partir da primeira
+                }
+                updateLightboxImage();
+            }
+
+            // Captura clique no item do grid original
+            gridContainer.addEventListener("click", (e) => {
+                const clickedCard = e.target.closest(".gallery-photo-card");
+                if (clickedCard) {
+                    currentPhotoIndex = parseInt(clickedCard.getAttribute("data-index"), 10);
+                    updateLightboxImage();
+                    lightbox.classList.add("is-active");
+                    document.body.classList.add("lightbox-open");
+                }
+            });
+
+            function closeLightbox() {
+                lightbox.classList.remove("is-active");
+                document.body.classList.remove("lightbox-open");
+                setTimeout(() => { lightboxImg.src = ""; }, 300);
+            }
+
+            // Listeners de Eventos nos Controles das Setas
+            if (btnNext) btnNext.addEventListener("click", (e) => { e.stopPropagation(); nextImage(); });
+            if (btnPrev) btnPrev.addEventListener("click", (e) => { e.stopPropagation(); prevImage(); });
+            if (lightboxClose) lightboxClose.addEventListener("click", closeLightbox);
+
+            // Clicar fora fecha
+            lightbox.addEventListener("click", (e) => {
+                if (e.target.classList.contains("lightbox-wrapper") || e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+
+            // Adiciona suporte total às setas e ESC do teclado físico
+            window.addEventListener("keydown", (e) => {
+                if (!lightbox.classList.contains("is-active")) return;
+                
+                if (e.key === "ArrowRight") nextImage();
+                if (e.key === "ArrowLeft") prevImage();
+                if (e.key === "Escape") closeLightbox();
+            });
+        });
+    </script>
+
+</body>
+</html>
