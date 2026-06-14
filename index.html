@@ -22,6 +22,8 @@
                 <a href="#events">Events</a>
                 <a href="#agency">Production Company</a>
                 <a href="#stage">Stage Design</a>
+                <a href="#scenography">Scenography</a>
+                <a href="#services">Services</a>
                 <a href="#contact">Contact</a>
             </div>
             <a href="https://usa.vaideingresso.com.br/ce-ta-doido-miami" target="_blank" rel="noopener noreferrer" class="btn-tickets">Buy Tickets</a>
@@ -59,39 +61,46 @@
     </div>
 
 <!-- EVENTS -->    
-    <section id="events" class="section-padding">
+<section id="events" class="section-padding">
         <div class="container">
             
             <div class="section-header-carousel">
                 <div class="section-header-text">
                     <p class="section-subtitle">— 2026 Roster</p>
-                    <h2 class="section-title">Upcoming & Past productions</h2>
+                    <h2 class="section-title">Upcoming Productions</h2>
                 </div>
                 <div class="carousel-controls">
-
-                    
-                    <button type="button" id="prev-btn" class="carousel-arrow" aria-label="Anterior">
+                    <button type="button" id="upcoming-prev-btn" class="carousel-arrow" aria-label="Anterior">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
                     </button>
-                    <button type="button" id="next-btn" class="carousel-arrow" aria-label="Próximo">
+                    <button type="button" id="upcoming-next-btn" class="carousel-arrow" aria-label="Próximo">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="event-carousel-container" style="margin-bottom: 64px;">
+                <div class="event-carousel-track" id="upcoming-track"></div>
+            </div>
+
+            <div class="section-header-carousel">
+                <div class="section-header-text">
+                    <p class="section-subtitle">— Legacy</p>
+                    <h2 class="section-title">Past Productions</h2>
+                </div>
+                <div class="carousel-controls">
+                    <button type="button" id="past-prev-btn" class="carousel-arrow" aria-label="Anterior">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                    </button>
+                    <button type="button" id="past-next-btn" class="carousel-arrow" aria-label="Próximo">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
                     </button>
                 </div>
             </div>
             
             <div class="event-carousel-container">
-                <div class="event-carousel-track" id="carousel-track"></div>
+                <div class="event-carousel-track" id="past-track"></div>
             </div>
-            <section id="events-portfolio-section" class="section-padding" style="display: none; border-top: 1px solid var(--border-color); background-color: #000000;">
-                <div class="container">
-                    <div class="portfolio-header" style="margin-bottom: 40px; text-align: center;">
-                        <h2 id="portfolio-section-title" style="font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); color: #ffffff; margin-bottom: 8px;">Event Portfolio</h2>
-                        <p style="color: var(--text-muted); font-size: 1.1rem;">Scroll down to explore the experience.</p>
-                    </div>
-                    
-                    <div class="portfolio-inline-grid" id="portfolio-inline-grid"></div>
-                </div>
-            </section>    
 
         </div>
     </section>
@@ -194,6 +203,148 @@
             </div>
         </div>
     </section>
+
+<!-- SCENOGRAPHY -->    
+<section id="scenography" class="section-padding bg-surface border-t">
+        <div class="container">
+            
+            <div class="stage-header-block">
+                <p class="section-subtitle">— Scenic Production & Environments</p>
+                <h2 class="section-title large-title-stage">We craft immersive scenography & custom builds.</h2>
+                <p class="stage-description-text">At Xnova Pro, we transform spaces into breathtaking realities through custom scenic design, thematic environments, and high-impact event decorations. Our team specializes in structural storytelling, combining artistry with precise engineering to deliver one-of-a-kind installations for festivals, corporate galas, branded activations, and temporary luxury spaces. From materials selection and architectural drafting to onsite installation, we ensure every texture, lighting integration, and architectural element works in perfect harmony. We construct immersive worlds that captivate audiences, ensuring your event’s visual landscape leaves a permanent mark on every attendee.</p>
+            </div>
+
+            <div class="stage-carousel-container" style="position: relative;">
+                
+                <div class="stage-carousel-controls">
+                    <button type="button" class="stage-ctrl-arrow left" id="scenography-prev-btn" aria-label="Previous scenography">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    </button>
+                    <button type="button" class="stage-ctrl-arrow right" id="scenography-next-btn" aria-label="Next scenography">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
+                </div>
+
+                <div class="stage-carousel-track" id="scenography-carousel-track">
+                    <div class="gallery-item"><img src="/assets/events/scenography/scenography-1.jpg
+                        " alt="Scenic production Cactus"></div>
+                    <div class="gallery-item"><img src="/assets/events/scenography/scenography-2.jpg" alt="Scenic production Cactus"></div>
+                    <div class="gallery-item"><img src="/assets/events/scenography/scenography-3.jpg" alt="Scenic production Cactus Gaming Area"></div>
+                    <div class="gallery-item"><img src="/assets/events/scenography/scenography-4.jpg" alt="Scenic production Numanice"></div>
+                    <div class="gallery-item"><img src="/assets/events/scenography/scenography-5.jpg" alt="Scenic production Deseo"></div>
+                    <div class="gallery-item"><img src="/assets/events/scenography/scenography-6.jpg" alt="Scenic production Deseo Led"></div>
+                    <div class="gallery-item"><img src="/assets/events/scenography/scenography-7.jpg" alt="Scenic production Deseo Final"></div>
+                    <div class="gallery-item"><img src="/assets/events/scenography/scenography-8.jpg" alt="Scenic production Supernova"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+<!-- SERVICES -->
+    <section id="services" class="section-padding border-t">
+        <div class="container">
+            
+            <div class="stage-header-block" style="margin-bottom: 64px;">
+                <p class="section-subtitle">— Expertise & Solutions</p>
+                <h2 class="section-title large-title-stage">Comprehensive production services tailored for entertainment.</h2>
+                <p class="stage-description-text">We combine technical precision with creative vision to deliver end-to-end solutions for live entertainment. Our team takes full accountability for the complete organization and execution of your event, managing everything from initial concepts and licensing to onsite logistics, sub-contractor coordination, and final breakdown. Whether providing high-end LED setups, specialized stage engineering, or full festival infrastructure, Xnova Pro handles the entire project roadmap so you can deliver a flawless, high-impact experience that meets international standards.</p>
+            </div>
+
+            <!-- GRID DE SERVIÇOS -->
+            <div class="services-grid">
+                
+                <!-- Card 1 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                    </div>
+                    <h3>3D Stage Design</h3>
+                    <p>Conceptual architectural layouts, immersive 3D drafting, and photorealistic blueprints tailored to translate artistic visions into actionable construction designs.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+                    </div>
+                    <h3>Scenic Fabrication</h3>
+                    <p>On-demand custom engineering, corporate brand installations, premium carpentry, and tailor-made scenic components constructed for massive crowd impact.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M7 7h10v10H7z"></path></svg>
+                    </div>
+                    <h3>Structural Rigging</h3>
+                    <p>Heavy-duty structural load computations, ground support planning, truss coordination, and professional certified rigging supervision guaranteeing total safety compliance.</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H5zm0 2h14v4H5V5zm0 6h14v4H5v-4zm0 6h14v2H5v-2z"></path></svg>
+                    </div>
+                    <h3>LED & AV Integration</h3>
+                    <p>Large-scale high-refresh modular LED screens mapping, system engineering, signal processing, and multi-display synchronization for seamless crowd delivery.</p>
+                </div>
+
+                <!-- Card 5  -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+                    </div>
+                    <h3>Full Event Organization</h3>
+                    <p>End-to-end event management and seamless technical organization. We oversee timelines, general venue logistics, vendor vetting, multi-tier budget auditing, and complete onsite execution from planning to load-out.</p>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.886H3.894l4.948 3.596L6.93 18.368 12 14.772l5.07 3.596-1.912-5.886 4.948-3.596h-6.194L12 3z"></path></svg>
+                    </div>
+                    <h3>Special FX Management</h3>
+                    <p>Synchronized high-power laser mapping, computational pyrotechnics design, stage lighting rehearsals, and atmosphere control for high-energy music festivals.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+<!-- PARTNERS LOGO MARQUEE -->
+    <div class="logo-marquee-wrapper">
+        <!-- title -->
+        <p class="partners-title">— Other companies</p>
+        
+        <div class="logo-marquee-track">
+            <div class="logo-marquee-content">
+                <a href="https://www.ultracorpfl.com" target="_blank" rel="noopener noreferrer" class="partner-logo-link">
+                    <img src="assets/img/ultra-construction-logo.png" alt="Ultracorp">
+                </a>
+                <a href="https://www.francoenterprisesfl.com" target="_blank" rel="noopener noreferrer" class="partner-logo-link">
+                    <img src="assets/img/franco-enterprises-logo.png" alt="Franco Enterprises">
+                </a>
+                 <a href="https://www.ultracorpfl.com" target="_blank" rel="noopener noreferrer" class="partner-logo-link">
+                    <img src="assets/img/ultra-construction-logo.png" alt="Ultracorp">
+                </a>
+                <a href="https://www.francoenterprisesfl.com" target="_blank" rel="noopener noreferrer" class="partner-logo-link">
+                    <img src="assets/img/franco-enterprises-logo.png" alt="Franco Enterprises">
+                </a>
+                <a href="https://www.ultracorpfl.com" target="_blank" rel="noopener noreferrer" class="partner-logo-link">
+                    <img src="assets/img/ultra-construction-logo.png" alt="Ultracorp">
+                </a>
+                <a href="https://www.francoenterprisesfl.com" target="_blank" rel="noopener noreferrer" class="partner-logo-link">
+                    <img src="assets/img/franco-enterprises-logo.png" alt="Franco Enterprises">
+                </a>
+                 <a href="https://www.ultracorpfl.com" target="_blank" rel="noopener noreferrer" class="partner-logo-link">
+                    <img src="assets/img/ultra-construction-logo.png" alt="Ultracorp">
+                </a>
+                <a href="https://www.francoenterprisesfl.com" target="_blank" rel="noopener noreferrer" class="partner-logo-link">
+                    <img src="assets/img/franco-enterprises-logo.png" alt="Franco Enterprises">
+                </a>                
+            </div>
+        </div>
+    </div>    
     
 <!-- CONTACT -->    
     <section id="contact" class="section-padding border-t">

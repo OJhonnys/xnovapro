@@ -1,5 +1,5 @@
 // ========================================================
-// 1. LISTA DE DADOS DOS EVENTOS
+// 1. EVENTS DATA STRUCTURE
 // ========================================================
 const meusEventos = [
     {
@@ -65,66 +65,90 @@ const meusEventos = [
 
 document.addEventListener("DOMContentLoaded", () => {
     
-    // ========================================================
-    // 2. INJEÇÃO AUTOMÁTICA DOS CARDS NO CARROSSEL DE EVENTOS
-    // ========================================================
-    const track = document.getElementById("carousel-track");
+    // Function to structure the identical HTML for each card.
+    function gerarCardHTML(evento) {
+        const footerContent = evento.isUpcoming 
+            ? `<div class="price-box">
+                    <span class="price-label">From</span>
+                    <span class="price-value">${evento.preco}</span>
+               </div>
+               <a class="btn-buy" href="${evento.linkBuy}" target="_blank" rel="noopener noreferrer">Buy ticket</a>`
+            : `<a class="btn-buy" href="gallery.html?event=${encodeURIComponent(evento.nome)}&folder=${evento.pastaFotos}">Check our Gallery</a>`;
 
-    if (track) {
-        track.innerHTML = meusEventos.map(evento => {
-            const footerContent = evento.isUpcoming 
-                ? `<div class="price-box">
-                        <span class="price-label">From</span>
-                        <span class="price-value">${evento.preco}</span>
-                   </div>
-                   <a class="btn-buy" href="${evento.linkBuy}" target="_blank" rel="noopener noreferrer">Buy ticket</a>`
-                : `<a class="btn-buy" href="gallery.html?event=${encodeURIComponent(evento.nome)}&folder=${evento.pastaFotos}">Check our Gallery</a>`;
+        const siteButton = evento.linkSite 
+            ? `<a href="${evento.linkSite}" target="_blank" class="btn-external">Visit Site <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg></a>`
+            : '';
 
-            const siteButton = evento.linkSite 
-                ? `<a href="${evento.linkSite}" target="_blank" class="btn-external">Visit Site <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg></a>`
-                : '';
-
-            return `
-                <div class="event-card">
-                    <div class="card-image-wrapper">
-                        <img src="${evento.imagem}" alt="${evento.nome}">
-                        <span class="badge">${evento.status}</span>
+        return `
+            <div class="event-card">
+                <div class="card-image-wrapper">
+                    <img src="${evento.imagem}" alt="${evento.nome}">
+                    <span class="badge">${evento.status}</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-header-row">
+                        <h3>${evento.nome}</h3>
+                        ${siteButton}
                     </div>
-                    <div class="card-body">
-                        <div class="card-header-row">
-                            <h3>${evento.nome}</h3>
-                            ${siteButton}
-                        </div>
-                        <p class="event-details">${evento.details}</p>
-                        <div class="card-footer-row">
-                            ${footerContent}
-                        </div>
+                    <p class="event-details">${evento.details}</p>
+                    <div class="card-footer-row">
+                        ${footerContent}
                     </div>
                 </div>
-            `;
-        }).join('');
+            </div>
+        `;
     }
 
     // ========================================================
-    // 3. CONTROLE DE NAVEGAÇÃO DO CARROSSEL DE EVENTOS
+    // 2. INJECTION
     // ========================================================
-    const prevBtn = document.getElementById("prev-btn");
-    const nextBtn = document.getElementById("next-btn");
+    const upcomingTrack = document.getElementById("upcoming-track");
+    const pastTrack = document.getElementById("past-track");
 
-    if (track && prevBtn && nextBtn) {
-        nextBtn.addEventListener("click", () => {
-            const scrollAmount = track.clientWidth;
-            track.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    // Filter and inject for upcoming events
+    if (upcomingTrack) {
+        const proximos = meusEventos.filter(e => e.isUpcoming);
+        upcomingTrack.innerHTML = proximos.map(gerarCardHTML).join('');
+    }
+
+    // Filter and inject for past events
+    if (pastTrack) {
+        const passados = meusEventos.filter(e => !e.isUpcoming);
+        pastTrack.innerHTML = passados.map(gerarCardHTML).join('');
+    }
+
+    // ========================================================
+    // 3. NAVEGATION CONTROL — UPCOMING CAROUSEL
+    // ========================================================
+    const upPrevBtn = document.getElementById("upcoming-prev-btn");
+    const upNextBtn = document.getElementById("upcoming-next-btn");
+
+    if (upcomingTrack && upPrevBtn && upNextBtn) {
+        upNextBtn.addEventListener("click", () => {
+            upcomingTrack.scrollBy({ left: upcomingTrack.clientWidth, behavior: "smooth" });
         });
-
-        prevBtn.addEventListener("click", () => {
-            const scrollAmount = track.clientWidth;
-            track.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+        upPrevBtn.addEventListener("click", () => {
+            upcomingTrack.scrollBy({ left: -upcomingTrack.clientWidth, behavior: "smooth" });
         });
     }
 
     // ========================================================
-    // 4. CONTROLE DE NAVEGAÇÃO DO CARROSSEL STAGE DESIGN
+    // 3.1 NAVEGATION CONTROL — PAST CAROUSEL
+    // ========================================================
+    const pastPrevBtn = document.getElementById("past-prev-btn");
+    const pastNextBtn = document.getElementById("past-next-btn");
+
+    if (pastTrack && pastPrevBtn && pastNextBtn) {
+        pastNextBtn.addEventListener("click", () => {
+            pastTrack.scrollBy({ left: pastTrack.clientWidth, behavior: "smooth" });
+        });
+        pastPrevBtn.addEventListener("click", () => {
+            pastTrack.scrollBy({ left: -pastTrack.clientWidth, behavior: "smooth" });
+        });
+    }
+
+    // ========================================================
+    // 4. NAVEGATION CONTROL — STAGE DESIGN CAROUSEL
     // ========================================================
     const stageTrack = document.getElementById("stage-carousel-track");
     const stagePrevBtn = document.getElementById("stage-prev-btn");
@@ -132,18 +156,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (stageTrack && stagePrevBtn && stageNextBtn) {
         stageNextBtn.addEventListener("click", () => {
-            const scrollAmount = stageTrack.clientWidth;
-            stageTrack.scrollBy({ left: scrollAmount, behavior: "smooth" });
+            stageTrack.scrollBy({ left: stageTrack.clientWidth, behavior: "smooth" });
         });
-
         stagePrevBtn.addEventListener("click", () => {
-            const scrollAmount = stageTrack.clientWidth;
-            stageTrack.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+            stageTrack.scrollBy({ left: -stageTrack.clientWidth, behavior: "smooth" });
         });
     }
 
     // ========================================================
-    // 5. CONTROLE DO VÍDEO HERO (MUTE/UNMUTE)
+    // 4.1 NAVEGATION CONTROL — SCENOGRAPHY CAROUSEL
+    // ========================================================
+    const scenoTrack = document.getElementById("scenography-carousel-track");
+    const scenoPrevBtn = document.getElementById("scenography-prev-btn");
+    const scenoNextBtn = document.getElementById("scenography-next-btn");
+
+    if (scenoTrack && scenoPrevBtn && scenoNextBtn) {
+        scenoNextBtn.addEventListener("click", () => {
+            scenoTrack.scrollBy({ left: scenoTrack.clientWidth, behavior: "smooth" });
+        });
+
+        scenoPrevBtn.addEventListener("click", () => {
+            scenoTrack.scrollBy({ left: -scenoTrack.clientWidth, behavior: "smooth" });
+        });
+    }
+
+    // ========================================================
+    // 5. NAVEGATION CONTROL — HERO VIDEO (MUTE/UNMUTE)
     // ========================================================
     const video = document.getElementById("hero-video");
     const btnMute = document.getElementById("btn-mute");
@@ -173,55 +211,48 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ========================================================
-    // 6. INTERCEPTAÇÃO E ENVIO ASSÍNCRONO DO FORMULÁRIO (🚀 NOVO)
+    // 6. NAVEGATION CONTROL — CONTACT FORM SUBMISSION
     // ========================================================
     const contactForm = document.getElementById("contact-form");
     const submitBtn = document.getElementById("submit-btn");
 
     if (contactForm && submitBtn) {
         contactForm.addEventListener("submit", function (e) {
-            e.preventDefault(); // Segura o reload automático do navegador
+            e.preventDefault();
 
-            // Modifica o estado do botão para dar feedback visual
             const originalButtonText = submitBtn.innerHTML;
             submitBtn.textContent = "Sending Message...";
             submitBtn.style.opacity = "0.7";
             submitBtn.style.pointerEvents = "none";
 
-            // Captura todos os inputs preenchidos
             const formData = new FormData(contactForm);
 
-            // Envia para a API em background (via AJAX/Fetch)
             fetch("https://api.web3forms.com/submit", {
                 method: "POST",
                 body: formData
             })
             .then(async (response) => {
                 if (response.status === 200) {
-                    // Sucesso total: Limpa o form e avisa o usuário de forma elegante
                     contactForm.reset();
                     submitBtn.textContent = "Message Sent Successfully! ★";
-                    submitBtn.style.background = "#1DB954"; // Muda temporariamente para verde Spotify
+                    submitBtn.style.background = "#1DB954";
                     submitBtn.style.color = "#ffffff";
                     
-                    // Retorna o botão ao normal depois de 4 segundos
                     setTimeout(() => {
                         submitBtn.innerHTML = originalButtonText;
-                        submitBtn.style.background = ""; // Reseta para o gradiente CSS
+                        submitBtn.style.background = "";
                         submitBtn.style.color = "";
                         submitBtn.style.opacity = "1";
                         submitBtn.style.pointerEvents = "auto";
                     }, 4000);
                 } else {
-                    // Caso falhe o status da API
                     throw new Error("Form response error");
                 }
             })
             .catch((error) => {
-                // Tratamento de erro de conexão ou servidor
                 console.error(error);
                 submitBtn.textContent = "Error! Please try again.";
-                submitBtn.style.background = "#ef4444"; // Vermelho de atenção
+                submitBtn.style.background = "#ef4444";
                 submitBtn.style.color = "#ffffff";
                 
                 setTimeout(() => {
@@ -232,6 +263,23 @@ document.addEventListener("DOMContentLoaded", () => {
                     submitBtn.style.pointerEvents = "auto";
                 }, 4000);
             });
+        });
+    }
+
+    // ========================================================
+    // 7. NAVEGATION CONTROL — LOGO MARQUEE PAUSE MANAGEMENT
+    // ========================================================
+    const logoTrack = document.querySelector(".logo-marquee-track");
+
+    if (logoTrack) {
+        // Injects pause on hover functionality for the logo marquee
+        logoTrack.addEventListener("mouseenter", () => {
+            logoTrack.style.animationPlayState = "paused";
+        });
+
+        // When the mouse leaves the logo track area, the animation will resume
+        logoTrack.addEventListener("mouseleave", () => {
+            logoTrack.style.animationPlayState = "running";
         });
     }
 });
