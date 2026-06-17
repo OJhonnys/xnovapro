@@ -80,7 +80,7 @@ html {
     left: 0;
     width: 100%;
     height: 64px;
-    z-index: 100;
+    z-index: 9999;
     border-bottom: 1px solid var(--border-color);
     background-color: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(12px);
@@ -1024,61 +1024,55 @@ html {
 }
 
 /* Main 3-column architecture layout configuration model rules */
+/* FOOTER */
+.main-footer {
+    background-color: #000000;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 64px 0 32px 0;
+    width: 100%;
+}
+
 .footer-grid {
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 32px;
     align-items: center;
     padding-bottom: 40px;
+    text-align: center;
 }
 
-@media (min-width: 768px) {
-    .footer-grid {
-        grid-template-columns: 1fr 1fr 1fr; /* Brand leftwards / links coordinates center / social networks rightwards */
-    }
-}
-
-/* Column 2: Core Logo node item values formatting */
 .footer-logo-img {
-    height: 60px; /* Noticeable scale enhancement amplifying emblem layout visibility parameters */
+    height: 60px;
     width: auto;
     display: block;
-    object-fit: contain; /* Centers logo elements evenly inline horizontally along target lines row modules */
+    object-fit: contain;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 8px; /* Safe padding block depth partitioning emblem node from secondary text details blocks underneath */
+    margin-bottom: 8px;
 }
 
-/* Ensures layout symmetry centers full branding blocks collections seamlessly */
 .footer-brand-col {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Resolves absolute symmetry alignments profiles locks */
-    text-align: center; /* Guarantees typography copy blocks map inner lines matching perfect alignment channels centerwards */
+    align-items: center;
+    text-align: center;
 }
 
-/* Retains spatial geographical coordinate parameters muted matching flat presentation guidelines definitions rules */
 .footer-location {
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.05em;
     color: var(--text-muted);
-    margin: 0;              /* Truncates native browser structural margin parameters preventing unwanted elements pushing offsets */
-    text-align: center
+    margin: 0;
+    text-align: center;
 }
 
-/* Column 3: Legal Terms of Service & Privacy Links Blocks rows layouts spacing modules */
 .footer-legal-links {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 12px;
-}
-
-@media (min-width: 768px) {
-    .footer-legal-links {
-        justify-self: center; /* Pins alignment balances coordinates center-aligned on desktop workstation monitors engines */
-        align-items: center;
-    }
 }
 
 .footer-legal-links a {
@@ -1092,16 +1086,10 @@ html {
     color: var(--text-main);
 }
 
-/* Column 1: Public Social Profile Connection anchors channels elements modules formatting styling */
 .footer-socials {
     display: flex;
+    justify-content: center;
     gap: 16px;
-}
-
-@media (min-width: 768px) {
-    .footer-socials {
-        justify-self: start; /* Pins components coordinates flush leftwards across display metrics paths desktop systems */
-    }
 }
 
 .social-link {
@@ -1121,8 +1109,23 @@ html {
     background-color: rgba(255, 255, 255, 0.03);
 }
 
-/* Sub-Footer: Legal Copyright Strings & Engineering Attributions Credits Lines Blocks */
-/* SUB-FOOTER: DRAWS DIVIDER INTERSECTION LINES SEGREGATING PROPERTY STRINGS ELEMENTS MATRIX LOGIC */
+@media (min-width: 768px) {
+    .footer-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        text-align: left;
+    }
+    
+    .footer-socials {
+        justify-self: start;
+    }
+    
+    .footer-legal-links {
+        justify-self: center;
+        align-items: center;
+    }
+}
+
 .container-footer-bottom {
     max-width: 1200px;
     padding: 12px;
@@ -1131,8 +1134,10 @@ html {
 .footer-bottom {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 12px;
     margin: 12px;
+    text-align: center;
 }
 
 @media (min-width: 768px) {
@@ -1140,6 +1145,7 @@ html {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+        text-align: left;
     }
 }
 
@@ -1160,10 +1166,9 @@ html {
     color: var(--accent-color);
 }
 
-/* INTEGRATED WORK PORTFOLIO INLINE IMAGE MOSAIC DISPLAY GRID FRAMEWORK */
 .portfolio-inline-grid {
     display: grid;
-    grid-template-columns: repeat(1, 1fr); /* Smartphones viewports default state: single column layout stack mapping */
+    grid-template-columns: repeat(1, 1fr);
     gap: 20px;
     width: 100%;
 }
